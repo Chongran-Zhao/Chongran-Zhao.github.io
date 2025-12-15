@@ -127,9 +127,7 @@
         }
         .research-item:last-child { border-bottom: none; }
         
-        /* --- Styles for Images (Updated) --- */
-        
-        /* Row for side-by-side images */
+        /* --- Styles for Standard Images (Hyperelasticity & Viscoelasticity) --- */
         .image-row {
             display: flex;
             justify-content: space-between;
@@ -138,13 +136,28 @@
         }
         .image-row img {
             width: 32%; 
-            height: auto; /* Height adjusts automatically to keep aspect ratio */
-            object-fit: contain; /* Shows the full image without cropping */
+            height: auto;
+            object-fit: contain;
             border: 1px solid #eee;
             border-radius: 3px;
         }
 
-        /* Special style for FEA Colorbar */
+        /* --- NEW Styles Specifically for FEA Images (Scaled to 0.4x) --- */
+        .fea-row {
+            display: flex;
+            justify-content: center; /* Center the smaller images */
+            gap: 15px; /* Slightly more gap */
+            margin-top: 15px;
+        }
+        .fea-row img {
+            width: 12.8%; /* Calculated: 32% * 0.4 = 12.8% */
+            height: auto;
+            object-fit: contain;
+            border: 1px solid #eee;
+            border-radius: 3px;
+        }
+
+        /* Scaled Colorbar */
         .fea-colorbar-container {
             display: flex;
             justify-content: center;
@@ -152,9 +165,10 @@
             margin-bottom: 10px;
         }
         .fea-colorbar-container img {
-            max-width: 60%; /* Adjusts the width of the colorbar relative to the page */
+            max-width: 24%; /* Calculated: 60% * 0.4 = 24% */
             height: auto;
         }
+        /* ------------------------------------------------------------------ */
 
         .figure-caption {
             font-size: 0.9em;
@@ -178,7 +192,11 @@
             
             .image-row { flex-direction: column; }
             .image-row img { width: 100%; margin-bottom: 10px; }
-            .fea-colorbar-container img { max-width: 100%; }
+            
+            /* Keep FEA images small but maybe slightly larger on mobile for visibility? */
+            /* Or keep scale consistency. Let's keep them proportional but stacked if needed. */
+            .fea-row img { width: 40%; } /* Increase slightly on mobile to be visible */
+            .fea-colorbar-container img { max-width: 60%; }
         }
     </style>
 </head>
@@ -288,7 +306,7 @@
                     We are also conducting constitutive development within our group's open-source finite element solver <a href="https://github.com/APSIS-ANALYSIS/PERIGEE" target="_blank">PERIGEE</a>, enabling finite element simulations of our viscoelastic models. See more details in <a href="https://doi.org/10.1016/j.jmps.2025.106346" target="_blank">[2]</a> and <a href="https://arxiv.org/abs/2508.14518" target="_blank">[3]</a>.
                 </p>
                 
-                <div class="image-row">
+                <div class="fea-row">
                     <img src="figures/t=10.png" alt="Simulation t=10s">
                     <img src="figures/t=20.png" alt="Simulation t=20s">
                     <img src="figures/t=25.png" alt="Simulation t=25s">
