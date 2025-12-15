@@ -31,8 +31,9 @@
         /* Headings */
         h1 { font-size: 2.4em; margin-bottom: 10px; margin-top: 0; }
         h2 { font-size: 1.6em; margin-top: 30px; color: #0056b3; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        h3 { font-size: 1.3em; margin-top: 20px; color: #444; margin-bottom: 5px;}
 
-        /* Header Layout (Flexbox) */
+        /* Header Layout */
         .header-container {
             display: flex;
             justify-content: space-between;
@@ -41,23 +42,15 @@
             border-bottom: 1px solid #eee;
             padding-bottom: 30px;
         }
-        
-        .header-info {
-            flex: 1;
-            padding-right: 20px;
-        }
+        .header-info { flex: 1; padding-right: 20px; }
 
-        /* Icon Colors */
+        /* Social Links & Icons */
         .icon-mail { color: #4CAFFF; }
         .icon-github { color: #171515; }
         .icon-orcid { color: #A6CE39; }
         .icon-researchgate { color: #00CCBB; }
 
-        /* Social Links Area */
-        .social-links {
-            margin-top: 15px;
-            font-size: 1em;
-        }
+        .social-links { margin-top: 15px; font-size: 1em; }
         .social-links a {
             margin-right: 18px;
             font-weight: bold;
@@ -67,13 +60,8 @@
             align-items: center;
             gap: 5px;
         }
-        .social-links a:hover {
-            color: #0056b3;
-            text-decoration: underline;
-        }
-        .social-links i {
-            font-size: 1.2em;
-        }
+        .social-links a:hover { color: #0056b3; text-decoration: underline; }
+        .social-links i { font-size: 1.2em; }
 
         /* Note Style */
         .looking-for-position {
@@ -83,14 +71,8 @@
             font-size: 1.1em;
         }
 
-        /* Logo Style */
-        .sustech-logo {
-            height: 70px;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        /* Profile Photo Style */
+        /* Images */
+        .sustech-logo { height: 70px; margin-bottom: 20px; display: block; }
         .profile-photo {
             width: 220px;
             height: 220px;
@@ -100,10 +82,80 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        /* Papers and Presentations */
+        /* Papers */
         .paper, .presentation { margin-bottom: 25px; }
         .paper-title { font-weight: bold; color: #0056b3; cursor: pointer; }
         .me { font-weight: bold; text-decoration: underline; }
+
+        /* --- New Research Details Button Styles --- */
+        details.research-details {
+            margin-bottom: 40px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px;
+            background-color: #f9f9f9;
+        }
+
+        summary.research-button {
+            cursor: pointer;
+            font-weight: bold;
+            padding: 15px;
+            background-color: #0056b3; /* Button Color */
+            color: white;
+            border-radius: 4px;
+            list-style: none; /* Hide default arrow */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        summary.research-button:hover {
+            background-color: #004494; /* Darker blue on hover */
+        }
+
+        summary.research-button::after {
+            content: '+'; 
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        details[open] summary.research-button::after {
+            content: '-';
+        }
+
+        /* Remove default marker for Chrome/Safari */
+        summary.research-button::-webkit-details-marker {
+            display: none;
+        }
+
+        .research-content {
+            padding: 20px;
+            background-color: white;
+            border-top: 1px solid #ddd;
+        }
+
+        .research-item {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #eee;
+        }
+        .research-item:last-child { border-bottom: none; }
+        
+        /* Placeholder for potential images */
+        .research-placeholder-img {
+            width: 100%;
+            max-width: 500px;
+            height: 200px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-style: italic;
+        }
+        /* ------------------------------------------ */
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
@@ -112,17 +164,9 @@
                 align-items: center;
                 text-align: center;
             }
-            .header-info {
-                padding-right: 0;
-                margin-top: 20px;
-            }
+            .header-info { padding-right: 0; margin-top: 20px; }
             .sustech-logo { margin: 0 auto 20px auto; }
-            .social-links {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                align-items: center;
-            }
+            .social-links { flex-direction: column; gap: 10px; align-items: center; }
             .social-links a { margin-right: 0; }
         }
     </style>
@@ -159,9 +203,8 @@
             </div>
 
             <p class="looking-for-position">
-                I'm looking for PhD positions in Fall 2026.
+                Note: I'm looking for PhD positions in Fall 2026.
             </p>
-
         </div>
         
         <div class="header-photo-container">
@@ -190,6 +233,36 @@
         </ul>
     </section>
 
+    <details class="research-details">
+        <summary class="research-button">Research Details (Click to Expand)</summary>
+        <div class="research-content">
+            
+            <div class="research-item">
+                <h3>1. Model Calibration - Hyperelasticity</h3>
+                <p>
+                    Description of your work on hyperelasticity calibration goes here. You can explain the methods used, the experimental data fitted, and the outcomes.
+                </p>
+                <div class="research-placeholder-img">[Image/Plot: Hyperelasticity Result]</div>
+            </div>
+
+            <div class="research-item">
+                <h3>2. Model Calibration - Viscoelasticity</h3>
+                <p>
+                    Description of your work on viscoelasticity calibration goes here. Detail the constitutive models applied and the time-dependent behaviors analyzed.
+                </p>
+                <div class="research-placeholder-img">[Image/Plot: Viscoelasticity Result]</div>
+            </div>
+
+            <div class="research-item">
+                <h3>3. Finite Element Analysis</h3>
+                <p>
+                    Description of your FEA simulations. Mention the software used (e.g., Abaqus, ANSYS, or custom C++ codes), mesh details, and boundary conditions.
+                </p>
+                <div class="research-placeholder-img">[Image/Plot: FEA Simulation]</div>
+            </div>
+
+        </div>
+    </details>
     <section>
         <h2>Publications</h2>
         
