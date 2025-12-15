@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css">
 
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
     <style>
         /* Basic Settings */
         body {
@@ -21,6 +23,8 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
+            /* Add padding to bottom to prevent footer overlap */
+            padding-bottom: 80px; 
         }
         
         a { color: #0056b3; text-decoration: none; }
@@ -142,15 +146,15 @@
             border-radius: 3px;
         }
 
-        /* --- NEW Styles Specifically for FEA Images (Scaled to 0.4x) --- */
+        /* --- Styles Specifically for FEA Images (Scaled to 0.4x) --- */
         .fea-row {
             display: flex;
-            justify-content: center; /* Center the smaller images */
-            gap: 15px; /* Slightly more gap */
+            justify-content: center;
+            gap: 15px;
             margin-top: 15px;
         }
         .fea-row img {
-            width: 12.8%; /* Calculated: 32% * 0.4 = 12.8% */
+            width: 12.8%; /* 32% * 0.4 */
             height: auto;
             object-fit: contain;
             border: 1px solid #eee;
@@ -165,10 +169,9 @@
             margin-bottom: 10px;
         }
         .fea-colorbar-container img {
-            max-width: 24%; /* Calculated: 60% * 0.4 = 24% */
+            max-width: 24%; /* 60% * 0.4 */
             height: auto;
         }
-        /* ------------------------------------------------------------------ */
 
         .figure-caption {
             font-size: 0.9em;
@@ -176,6 +179,34 @@
             text-align: justify;
             margin-top: 10px;
             font-style: italic;
+        }
+
+        /* --- NEW: Visitor Counter Style (Fixed Bottom Left) --- */
+        .visitor-monitor {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            font-size: 14px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            opacity: 0.9;
+        }
+        .visitor-monitor i {
+            color: #0056b3;
+        }
+        .visitor-monitor:hover {
+            opacity: 1;
+        }
+        /* Hide Busuanzi if it fails to load */
+        #busuanzi_container_site_pv {
+            display: inline !important;
         }
 
         /* Mobile Responsiveness */
@@ -193,9 +224,7 @@
             .image-row { flex-direction: column; }
             .image-row img { width: 100%; margin-bottom: 10px; }
             
-            /* Keep FEA images small but maybe slightly larger on mobile for visibility? */
-            /* Or keep scale consistency. Let's keep them proportional but stacked if needed. */
-            .fea-row img { width: 40%; } /* Increase slightly on mobile to be visible */
+            .fea-row img { width: 40%; } 
             .fea-colorbar-container img { max-width: 60%; }
         }
     </style>
@@ -317,7 +346,7 @@
                 </div>
 
                 <p class="figure-caption">
-                    Finite element simulation results. The geometry consists of a plate with a central hole. The loading condition involves uniaxial tension from 0-10s, relaxation from 10-20s, and unloading from 20-25s. The distribution of the internal variable component in the loading direction is observed.
+                    Finite element simulation results. The geometry consists of a plate with a central hole. The loading condition involves uniaxial tension from 0-10s, relaxation from 10-20s, and unloading from 20-25s. The distribution of the Cauchy stress component in the loading direction is observed.
                 </p>
             </div>
 
@@ -373,6 +402,13 @@
         </div>
 
     </section>
+
+    <div class="visitor-monitor">
+        <i class="fa-solid fa-eye"></i>
+        <span id="busuanzi_container_site_pv">
+            Total Visits: <span id="busuanzi_value_site_pv">...</span>
+        </span>
+    </div>
 
 </body>
 </html>
