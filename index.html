@@ -44,11 +44,11 @@
             padding-right: 20px;
         }
 
-        /* Icon Colors (Matching your LaTeX definitions) */
-        .icon-mail { color: #4CAFFF; }         /* mailblue */
-        .icon-github { color: #171515; }       /* githubblack */
-        .icon-orcid { color: #A6CE39; }        /* orcidgreen */
-        .icon-researchgate { color: #00CCBB; } /* researchgatemint */
+        /* Icon Colors */
+        .icon-mail { color: #4CAFFF; }
+        .icon-github { color: #171515; }
+        .icon-orcid { color: #A6CE39; }
+        .icon-researchgate { color: #00CCBB; }
 
         /* Social Links Area */
         .social-links {
@@ -58,18 +58,26 @@
         .social-links a {
             margin-right: 18px;
             font-weight: bold;
-            color: #333; /* Text color stays black/dark, only icon is colored */
+            color: #333;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 5px; /* Space between icon and text */
+            gap: 5px;
         }
         .social-links a:hover {
             color: #0056b3;
             text-decoration: underline;
         }
         .social-links i {
-            font-size: 1.2em; /* Make icons slightly larger */
+            font-size: 1.2em;
+        }
+
+        /* Note Style (New Added) */
+        .looking-for-position {
+            margin-top: 20px;
+            color: #cc0000; /* Dark red to catch attention, or use #0056b3 for blue */
+            font-weight: bold;
+            font-size: 1.1em;
         }
 
         /* Logo Style */
@@ -133,7 +141,8 @@
                 <a href="mailto:chongranzhao@outlook.com">
                     <i class="fa-solid fa-envelope icon-mail"></i> chongranzhao@outlook.com
                 </a>
-                <br> <div style="margin-top: 8px;">
+                <br>
+                <div style="margin-top: 8px;">
                     <a href="https://github.com/Chongran-Zhao" target="_blank">
                         <i class="fa-brands fa-github icon-github"></i> GitHub
                     </a>
@@ -145,6 +154,11 @@
                     </a>
                 </div>
             </div>
+
+            <p class="looking-for-position">
+                Note: I'm looking for PhD positions in Fall 2026.
+            </p>
+
         </div>
         
         <div class="header-photo-container">
