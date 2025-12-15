@@ -127,7 +127,7 @@
         }
         .research-item:last-child { border-bottom: none; }
         
-        /* --- Styles for Images --- */
+        /* --- Styles for Images (Updated) --- */
         
         /* Row for side-by-side images */
         .image-row {
@@ -138,15 +138,13 @@
         }
         .image-row img {
             width: 32%; 
-            /* object-fit: cover helps simulate cropping by filling the box */
-            object-fit: cover; 
-            /* Focus on center to simulate trimming sides */
-            object-position: center; 
+            height: auto; /* Height adjusts automatically to keep aspect ratio */
+            object-fit: contain; /* Shows the full image without cropping */
             border: 1px solid #eee;
             border-radius: 3px;
         }
 
-        /* Special style for FEA Colorbar to be centered */
+        /* Special style for FEA Colorbar */
         .fea-colorbar-container {
             display: flex;
             justify-content: center;
@@ -154,7 +152,7 @@
             margin-bottom: 10px;
         }
         .fea-colorbar-container img {
-            max-width: 60%; /* Adjust width of colorbar */
+            max-width: 60%; /* Adjusts the width of the colorbar relative to the page */
             height: auto;
         }
 
