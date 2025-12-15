@@ -63,10 +63,10 @@
         .social-links a:hover { color: #0056b3; text-decoration: underline; }
         .social-links i { font-size: 1.2em; }
 
-        /* Note Style (Changed to Black) */
+        /* Note Style */
         .looking-for-position {
             margin-top: 20px;
-            color: black; /* Changed from red to black */
+            color: black; 
             font-weight: bold;
             font-size: 1.1em;
         }
@@ -127,22 +127,9 @@
         }
         .research-item:last-child { border-bottom: none; }
         
-        /* Placeholder for other images */
-        .research-placeholder-img {
-            width: 100%;
-            max-width: 500px;
-            height: 200px;
-            background-color: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            margin: 10px 0;
-            border-radius: 5px;
-            font-style: italic;
-        }
-
-        /* Styles for 3-Column Images */
+        /* --- Styles for Images --- */
+        
+        /* Row for side-by-side images */
         .image-row {
             display: flex;
             justify-content: space-between;
@@ -151,14 +138,30 @@
         }
         .image-row img {
             width: 32%; 
-            object-fit: contain;
+            /* object-fit: cover helps simulate cropping by filling the box */
+            object-fit: cover; 
+            /* Focus on center to simulate trimming sides */
+            object-position: center; 
             border: 1px solid #eee;
             border-radius: 3px;
         }
+
+        /* Special style for FEA Colorbar to be centered */
+        .fea-colorbar-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        .fea-colorbar-container img {
+            max-width: 60%; /* Adjust width of colorbar */
+            height: auto;
+        }
+
         .figure-caption {
             font-size: 0.9em;
             color: #555;
-            text-align: justify; /* Justify text for long captions */
+            text-align: justify;
             margin-top: 10px;
             font-style: italic;
         }
@@ -177,6 +180,7 @@
             
             .image-row { flex-direction: column; }
             .image-row img { width: 100%; margin-bottom: 10px; }
+            .fea-colorbar-container img { max-width: 100%; }
         }
     </style>
 </head>
@@ -283,9 +287,22 @@
             <div class="research-item">
                 <h3>3. Finite Element Analysis</h3>
                 <p>
-                    Description of your FEA simulations. Mention the software used (e.g., Abaqus, ANSYS, or custom C++ codes), mesh details, and boundary conditions.
+                    We are also conducting constitutive development within our group's open-source finite element solver <a href="https://github.com/APSIS-ANALYSIS/PERIGEE" target="_blank">PERIGEE</a>, enabling finite element simulations of our viscoelastic models. See more details in <a href="https://doi.org/10.1016/j.jmps.2025.106346" target="_blank">[2]</a> and <a href="https://arxiv.org/abs/2508.14518" target="_blank">[3]</a>.
                 </p>
-                <div class="research-placeholder-img">[Image/Plot: FEA Simulation]</div>
+                
+                <div class="image-row">
+                    <img src="figures/t=10.png" alt="Simulation t=10s">
+                    <img src="figures/t=20.png" alt="Simulation t=20s">
+                    <img src="figures/t=25.png" alt="Simulation t=25s">
+                </div>
+                
+                <div class="fea-colorbar-container">
+                    <img src="figures/color_bar.png" alt="Colorbar">
+                </div>
+
+                <p class="figure-caption">
+                    Finite element simulation results. The geometry consists of a plate with a central hole. The loading condition involves uniaxial tension from 0-10s, relaxation from 10-20s, and unloading from 20-25s. The distribution of the Cauchy stress component in the loading direction is observed.
+                </p>
             </div>
 
         </div>
