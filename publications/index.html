@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en" class="scroll-smooth"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/_next/static/css/92b53c90e215dddf.css" data-precedence="next"/><link rel="icon" href="/figures/logo.png" type="image/svg+xml"/><link rel="dns-prefetch" href="https://google-fonts.jialeliu.com"/><link rel="preconnect" href="https://google-fonts.jialeliu.com" crossorigin=""/><link rel="preload" as="style" href="https://google-fonts.jialeliu.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;display=swap"/><link rel="stylesheet" id="gfonts-css" href="https://google-fonts.jialeliu.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;display=swap" media="print"/><noscript><link rel="stylesheet" href="https://google-fonts.jialeliu.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;display=swap"/></noscript><title>Publications | Chongran Zhao</title><meta name="description" content="Peer-reviewed and preprint publications."/><meta name="author" content="Chongran Zhao"/><meta name="keywords" content="Chongran Zhao,PhD,Research,Southern University of Science and Technology (SUSTech)"/><meta name="creator" content="Chongran Zhao"/><meta name="publisher" content="Chongran Zhao"/><meta property="og:title" content="Chongran Zhao"/><meta property="og:description" content="Master student in Mechanics at SUSTech."/><meta property="og:site_name" content="Chongran Zhao&#x27;s Academic Website"/><meta property="og:locale" content="en_US"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Chongran Zhao"/><meta name="twitter:description" content="Master student in Mechanics at SUSTech."/><link rel="icon" href="/figures/logo.png"/><style>
 .bibtex-wrap{position:relative;display:inline-flex;}
-.bibtex-popover{position:absolute;right:0;top:calc(100% + 8px);min-width:320px;max-width:480px;z-index:20;opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity 160ms ease,transform 160ms ease;}
+.bibtex-popover{position:absolute;right:0;top:100%;margin-top:8px;min-width:320px;max-width:480px;z-index:20;opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity 160ms ease,transform 160ms ease;}
 .bibtex-wrap:hover .bibtex-popover{opacity:1;pointer-events:auto;transform:translateY(0);}
 .bibtex-panel{background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.12);padding:12px;}
 .bibtex-preview{font-size:11px;line-height:1.4;white-space:pre-wrap;max-height:180px;overflow:auto;color:#374151;margin:0;}
@@ -44,22 +44,56 @@ nav.site-header {
     btn.addEventListener('click', function(){copyBibtex(btn);});
   });
 })();</script><script>(function(){
-  function fillPreview(wrap){
+  function firstAuthorYear(bib){
+    var authorMatch=bib.match(/author\s*=\s*\{([^}]+)\}/i);
+    var yearMatch=bib.match(/year\s*=\s*\{([^}]+)\}/i);
+    var author=authorMatch?authorMatch[1]:'', year=yearMatch?yearMatch[1]:'';
+    var first=author.split(/\s+and\s+/i)[0].trim();
+    var surname=first.includes(',')?first.split(',')[0].trim():first.split(/\s+/).slice(-1)[0];
+    var title=[surname, year].filter(Boolean).join(' ');
+    return title || '';
+  }
+  function formatBibtex(bib){
+    var lines=bib.replace(//g,'').split('
+').map(function(l){return l.trim();}).filter(function(l){return l.length;});
+    var merged=[];
+    lines.forEach(function(line){
+      if(line.startsWith('@') || line==='}'){
+        merged.push(line);
+        return;
+      }
+      if(line.includes('=')){
+        merged.push(line);
+        return;
+      }
+      if(merged.length){
+        merged[merged.length-1]+= ' ' + line;
+      } else {
+        merged.push(line);
+      }
+    });
+    return merged.map(function(line, idx){
+      if(idx===0 || line==='}') return line;
+      return '  ' + line;
+    }).join('
+');
+  }
+  document.querySelectorAll('.bibtex-wrap').forEach(function(wrap){
     var card=wrap.closest('[data-bibtex]');
     if(!card) return;
     var bib=card.getAttribute('data-bibtex');
     var preview=wrap.querySelector('.bibtex-preview');
-    if(preview && bib){preview.textContent=bib;}
-  }
-  document.querySelectorAll('.bibtex-wrap').forEach(function(wrap){
-    fillPreview(wrap);
+    if(preview && bib){
+      var header=firstAuthorYear(bib);
+      var formatted=formatBibtex(bib);
+      preview.textContent=(header?header + '
+
+':'') + formatted;
+    }
     var copyBtn=wrap.querySelector('.bibtex-copy');
     if(copyBtn){
       copyBtn.addEventListener('click', function(e){
         e.stopPropagation();
-        var card=wrap.closest('[data-bibtex]');
-        if(!card) return;
-        var bib=card.getAttribute('data-bibtex');
         if(!bib) return;
         if(navigator.clipboard && navigator.clipboard.writeText){
           navigator.clipboard.writeText(bib).then(function(){
