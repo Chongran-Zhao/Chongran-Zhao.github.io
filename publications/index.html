@@ -61,15 +61,19 @@ nav.site-header {
   document.querySelectorAll('.bibtex-wrap').forEach(function(wrap){
     var card=wrap.closest('[data-bibtex]');
     if(!card) return;
-    var bib=card.getAttribute('data-bibtex');
+    var bib=card.getAttribute('data-bibtex') || '';
     var preview=wrap.querySelector('.bibtex-preview');
-    if(preview && bib){
+    function fillPreview(){
+      if(!preview) return;
       var header=firstAuthorYear(bib);
-      var formatted=formatBibtex(bib);
+      var formatted=formatBibtex(bib || '');
       preview.textContent=(header?header + '
 
 ':'') + formatted;
     }
+    fillPreview();
+    wrap.addEventListener('mouseenter', fillPreview);
+    wrap.addEventListener('focusin', fillPreview);
     var copyBtn=wrap.querySelector('.bibtex-copy');
     if(copyBtn){
       copyBtn.addEventListener('click', function(e){
