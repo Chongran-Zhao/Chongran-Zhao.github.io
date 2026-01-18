@@ -9,16 +9,6 @@ nav.site-header {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.cv-overlay{position:fixed;inset:0;background:rgba(15,23,42,0.72);z-index:80;display:none;align-items:center;justify-content:center;padding:24px;}
-.cv-overlay.open{display:flex;}
-.cv-panel{background:#fff;width:min(1000px,92vw);height:min(90vh,900px);border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.35);display:flex;flex-direction:column;}
-.cv-panel header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#f8fafc;border-bottom:1px solid #e5e7eb;}
-.cv-panel-title{font-size:13px;color:#0f172a;font-weight:600;}
-.cv-close{border:0;background:#e2e8f0;color:#0f172a;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;}
-[data-theme="dark"] .cv-panel{background:#0f172a;}
-[data-theme="dark"] .cv-panel header{background:#0b1220;border-color:rgba(148,163,184,0.24);}
-[data-theme="dark"] .cv-panel-title{color:#e2e8f0;}
-[data-theme="dark"] .cv-close{background:#1f2937;color:#e5e7eb;}
 
 </style>
 <script>
@@ -62,7 +52,7 @@ window.MathJax = {
   wrap.querySelector('.gui-next').addEventListener('click', function(){idx=(idx+1)%imgs.length; animate(1);});
 })();
 </script><h2 class="text-2xl font-serif font-bold text-primary mt-8 mb-4 border-b border-neutral-200 dark:border-neutral-800 pb-2">3. Finite Element Simulation</h2><p class="mb-4 last:mb-0">We implement the calibrated constitutive models in the group’s open-source solver <a href="https://github.com/APSIS-ANALYSIS/PERIGEE" target="_blank" rel="noopener noreferrer" class="text-accent font-medium transition-all duration-200 rounded hover:bg-accent/10 hover:shadow-sm">PERIGEE</a> and run finite element simulations for verification and predictive studies.</p><div style="display:flex;gap:12px;flex-wrap:wrap;"><img src="/figures/t=10.png" alt="Simulation t=10s" style="width:32%;height:auto;object-fit:cover;"/><img src="/figures/t=20.png" alt="Simulation t=20s" style="width:32%;height:auto;object-fit:cover;"/><img src="/figures/t=25.png" alt="Simulation t=25s" style="width:32%;height:auto;object-fit:cover;"/></div><img src="/figures/color_bar.png" alt="Colorbar" style="width:40%;height:auto;display:block;margin:12px auto 0;"/></div></div></div></div><!--$--><!--/$--><!--$--><!--/$--></main><footer class="border-t border-neutral-200/50 bg-neutral-50/50 dark:bg-neutral-900/50 dark:border-neutral-700/50"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6"><div class="flex flex-col sm:flex-row justify-between items-center gap-2"><p class="text-xs text-neutral-500">Last updated: <!-- -->January 18, 2026</p><p class="text-xs text-neutral-500 flex items-center"><a href="https://github.com/xyjoey/PRISM" target="_blank" rel="noopener noreferrer">Built with PRISM</a><span class="ml-2">🚀</span></p></div></div></footer></div><script>(function(){var root=document.documentElement;function setTheme(t){root.classList.remove("light","dark");root.classList.add(t);root.setAttribute("data-theme",t);localStorage.setItem("theme",t);} var stored=localStorage.getItem("theme");if(stored==="dark"||stored==="light"){setTheme(stored);}else{setTheme("light");} document.querySelectorAll(".theme-toggle").forEach(function(btn){btn.addEventListener("click",function(){var next=root.classList.contains("dark")?"light":"dark";setTheme(next);});});})();</script><script>(function(){window.addEventListener('load',function(){if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise();}});})();</script>
-      <button class="cv-close" type="button" data-cv-close>Close</button>
+      
     </header>
     
   </div>
