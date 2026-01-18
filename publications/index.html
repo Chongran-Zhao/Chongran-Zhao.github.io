@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en" class="scroll-smooth"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/_next/static/css/92b53c90e215dddf.css" data-precedence="next"/><link rel="icon" href="/figures/logo.png" type="image/svg+xml"/><link rel="dns-prefetch" href="https://google-fonts.jialeliu.com"/><link rel="preconnect" href="https://google-fonts.jialeliu.com" crossorigin=""/><link rel="preload" as="style" href="https://google-fonts.jialeliu.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;display=swap"/><link rel="stylesheet" id="gfonts-css" href="https://google-fonts.jialeliu.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;display=swap" media="print"/><noscript><link rel="stylesheet" href="https://google-fonts.jialeliu.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;display=swap"/></noscript><title>Publications | Chongran Zhao</title><meta name="description" content="Peer-reviewed and preprint publications."/><meta name="author" content="Chongran Zhao"/><meta name="keywords" content="Chongran Zhao,PhD,Research,Southern University of Science and Technology (SUSTech)"/><meta name="creator" content="Chongran Zhao"/><meta name="publisher" content="Chongran Zhao"/><meta property="og:title" content="Chongran Zhao"/><meta property="og:description" content="Master student in Mechanics at SUSTech."/><meta property="og:site_name" content="Chongran Zhao&#x27;s Academic Website"/><meta property="og:locale" content="en_US"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Chongran Zhao"/><meta name="twitter:description" content="Master student in Mechanics at SUSTech."/><link rel="icon" href="/figures/logo.png"/><style>
 .bibtex-wrap{position:relative;display:inline-flex;}
-.bibtex-popover{position:fixed;right:0;top:100%;margin-top:8px;min-width:320px;max-width:480px;z-index:60;display:none;opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity 160ms ease,transform 160ms ease;}
+.bibtex-popover{position:fixed;right:0;top:100%;margin-top:8px;min-width:320px;max-width:480px;z-index:9999;display:none;opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity 160ms ease,transform 160ms ease;}
 .bibtex-wrap.is-open .bibtex-popover{display:block;opacity:1;pointer-events:auto;transform:translateY(0);}
 .bibtex-panel{background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.12);padding:12px;}
 .bibtex-preview{font-size:11px;line-height:1.4;white-space:pre-wrap;max-height:180px;overflow:auto;color:#374151;margin:0;}
@@ -78,10 +78,7 @@ nav.site-header {
     }).join('
 ');
   }
-  function positionPopover(wrap){
-    var pop=wrap.querySelector('.bibtex-popover');
-    var btn=wrap.querySelector('[data-bibtex-button]');
-    if(!pop || !btn) return;
+  function positionPopover(pop, btn){
     pop.style.display='block';
     pop.style.visibility='hidden';
     pop.style.left='0px';
@@ -94,11 +91,34 @@ nav.site-header {
     pop.style.top=top + 'px';
     pop.style.visibility='visible';
   }
-  document.querySelectorAll('.bibtex-wrap').forEach(function(wrap){
+  function openPopover(wrap){
+    var pop=wrap._popover;
+    var btn=wrap.querySelector('[data-bibtex-button]');
+    if(!pop || !btn) return;
+    wrap.classList.add('is-open');
+    positionPopover(pop, btn);
+    pop.style.opacity='1';
+    pop.style.pointerEvents='auto';
+  }
+  function closePopover(wrap){
+    var pop=wrap._popover;
+    wrap.classList.remove('is-open');
+    if(pop){
+      pop.style.opacity='0';
+      pop.style.pointerEvents='none';
+      pop.style.display='none';
+    }
+  }
+  document.querySelectorAll('.bibtex-wrap').forEach(function(wrap, idx){
     var card=wrap.closest('[data-bibtex]');
     if(!card) return;
     var bib=card.getAttribute('data-bibtex');
-    var preview=wrap.querySelector('.bibtex-preview');
+    var pop=wrap.querySelector('.bibtex-popover');
+    if(pop){
+      document.body.appendChild(pop);
+      wrap._popover=pop;
+    }
+    var preview=pop?pop.querySelector('.bibtex-preview'):null;
     if(preview && bib){
       var header=firstAuthorYear(bib);
       var formatted=formatBibtex(bib);
@@ -107,19 +127,21 @@ nav.site-header {
 ':'') + formatted;
     }
     var button=wrap.querySelector('[data-bibtex-button]');
-    function open(){wrap.classList.add('is-open');positionPopover(wrap);}    
-    function close(){wrap.classList.remove('is-open');var pop=wrap.querySelector('.bibtex-popover'); if(pop){pop.style.display='none';}}
-    wrap.addEventListener('mouseenter', open);
-    wrap.addEventListener('mouseleave', close);
     if(button){
-      button.addEventListener('focus', open);
-      button.addEventListener('blur', close);
+      button.addEventListener('mouseenter', function(){openPopover(wrap);});
+      button.addEventListener('mouseleave', function(){closePopover(wrap);});
+      button.addEventListener('focus', function(){openPopover(wrap);});
+      button.addEventListener('blur', function(){closePopover(wrap);});
       button.addEventListener('click', function(e){
         e.preventDefault();
-        if(wrap.classList.contains('is-open')){close();} else {open();}
+        if(wrap.classList.contains('is-open')){closePopover(wrap);} else {openPopover(wrap);} 
       });
     }
-    var copyBtn=wrap.querySelector('.bibtex-copy');
+    if(pop){
+      pop.addEventListener('mouseenter', function(){openPopover(wrap);});
+      pop.addEventListener('mouseleave', function(){closePopover(wrap);});
+    }
+    var copyBtn=pop?pop.querySelector('.bibtex-copy'):null;
     if(copyBtn){
       copyBtn.addEventListener('click', function(e){
         e.stopPropagation();
@@ -140,4 +162,7 @@ nav.site-header {
       });
     }
   });
+  window.addEventListener('scroll', function(){
+    document.querySelectorAll('.bibtex-wrap.is-open').forEach(function(wrap){closePopover(wrap);});
+  }, {passive:true});
 })();</script></body></html>
