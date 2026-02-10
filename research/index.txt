@@ -27,7 +27,7 @@ Calibration against Treloar's experimental data for rubber. From left to right: 
 
 ## 2. Model Calibration - Viscoelasticity
 
-We developed a novel viscoelastic modeling theory utilizing the Green-Naghdi-type assumption to decompose elastic and inelastic deformations. This assumption applies to both linear and nonlinear viscoelastic models. In the linear regime, it yields a stress expression in the form of a hereditary integral. In the nonlinear case, the kinematic decomposition, facilitated by the introduction of generalized strains, renders the decomposition calibratable rather than pre-declared or fixed. See more details in [2](https://doi.org/10.1016/j.jmps.2025.106346) and [3](https://arxiv.org/abs/2508.14518).
+We developed a novel viscoelastic modeling theory utilizing the Green-Naghdi-type assumption to decompose elastic and inelastic deformations. This assumption applies to both linear and nonlinear viscoelastic models. In the linear regime, it yields a stress expression in the form of a hereditary integral. In the nonlinear case, the kinematic decomposition, facilitated by the introduction of generalized strains, renders the decomposition calibratable rather than pre-declared or fixed. See more details in [2](https://doi.org/10.1016/j.jmps.2025.106346) and [3](https://doi.org/10.1016/j.ijsolstr.2026.113893).
 
 ![Green-Naghdi-type with Curnier-Rakotomanana strain](/figures/brain_shear_FV_CR.jpg)
 ![Green-Naghdi-type with Hencky strain](/figures/brain_shear_FV_Hencky.jpg)
@@ -37,7 +37,7 @@ Comparison of nonlinear viscoelastic models based on Green-Naghdi-type decomposi
 
 ## 3. Finite Element Analysis
 
-We are also conducting constitutive development within our group's open-source finite element solver [PERIGEE](https://github.com/APSIS-ANALYSIS/PERIGEE), enabling finite element simulations of our viscoelastic models. See more details in [2](https://doi.org/10.1016/j.jmps.2025.106346) and [3](https://arxiv.org/abs/2508.14518).
+We are also conducting constitutive development within our group's open-source finite element solver [PERIGEE](https://github.com/APSIS-ANALYSIS/PERIGEE), enabling finite element simulations of our viscoelastic models. See more details in [2](https://doi.org/10.1016/j.jmps.2025.106346) and [3](https://doi.org/10.1016/j.ijsolstr.2026.113893).
 
 ![Simulation t=10s](/figures/t=10.png)
 ![Simulation t=20s](/figures/t=20.png)
