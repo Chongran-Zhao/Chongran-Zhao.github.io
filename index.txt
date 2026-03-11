@@ -37,9 +37,11 @@ Comparison of nonlinear viscoelastic models based on Green-Naghdi-type decomposi
 
 We are also conducting constitutive development within our group's open-source finite element solver [PERIGEE](https://github.com/APSIS-ANALYSIS/PERIGEE), enabling finite element simulations of our viscoelastic models. See more details in [2](https://doi.org/10.1016/j.jmps.2025.106346) and [3](https://doi.org/10.1016/j.ijsolstr.2026.113893).
 
-![Simulation t=10s](/figures/t=10.png)
-![Simulation t=20s](/figures/t=20.png)
-![Simulation t=25s](/figures/t=25.png)
+<div style="display:flex;gap:12px;flex-wrap:wrap;">
+  <video src="/video/Ev1.mp4" autoplay loop muted playsinline preload="metadata" style="width:32%;height:auto;object-fit:cover;" aria-label="Simulation Ev1"></video>
+  <video src="/video/Ev2.mp4" autoplay loop muted playsinline preload="metadata" style="width:32%;height:auto;object-fit:cover;" aria-label="Simulation Ev2"></video>
+  <video src="/video/sigma.mp4" autoplay loop muted playsinline preload="metadata" style="width:32%;height:auto;object-fit:cover;" aria-label="Simulation sigma"></video>
+</div>
 ![Colorbar](/figures/color_bar.png)
 
 Finite element simulation results. The geometry consists of a plate with a central hole. The loading condition involves uniaxial tension from 0-10s, relaxation from 10-20s, and unloading from 20-25s. The distribution of the Cauchy stress component in the loading direction is observed.
