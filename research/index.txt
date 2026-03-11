@@ -40,14 +40,14 @@ Comparison of nonlinear viscoelastic models based on Green-Naghdi-type decomposi
 We are also conducting constitutive development within our group's open-source finite element solver [PERIGEE](https://github.com/APSIS-ANALYSIS/PERIGEE), enabling finite element simulations of our viscoelastic models. See more details in [2](https://doi.org/10.1016/j.jmps.2025.106346) and [3](https://doi.org/10.1016/j.ijsolstr.2026.113893).
 
 <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:stretch;">
-  <div style="flex:1 1 240px;min-width:220px;height:360px;overflow:hidden;border-radius:10px;background:transparent;">
-    <video src="/video/Ev1.mp4" autoplay loop muted playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;object-position:center 58%;transform:scale(2.25);transform-origin:center center;filter:contrast(1.18) saturate(1.15) brightness(0.98);" aria-label="Simulation Ev1"></video>
+  <div style="flex:1 1 240px;min-width:220px;overflow:hidden;border-radius:10px;background:transparent;">
+    <video src="/video/Ev1.mp4" autoplay loop muted playsinline preload="metadata" style="width:400%;height:auto;max-width:none;display:block;margin-left:-150%;filter:contrast(1.18) saturate(1.15) brightness(0.98);" aria-label="Simulation Ev1"></video>
   </div>
-  <div style="flex:1 1 240px;min-width:220px;height:360px;overflow:hidden;border-radius:10px;background:transparent;">
-    <video src="/video/Ev2.mp4" autoplay loop muted playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;object-position:center 58%;transform:scale(2.25);transform-origin:center center;filter:contrast(1.18) saturate(1.15) brightness(0.98);" aria-label="Simulation Ev2"></video>
+  <div style="flex:1 1 240px;min-width:220px;overflow:hidden;border-radius:10px;background:transparent;">
+    <video src="/video/Ev2.mp4" autoplay loop muted playsinline preload="metadata" style="width:400%;height:auto;max-width:none;display:block;margin-left:-150%;filter:contrast(1.18) saturate(1.15) brightness(0.98);" aria-label="Simulation Ev2"></video>
   </div>
-  <div style="flex:1 1 240px;min-width:220px;height:360px;overflow:hidden;border-radius:10px;background:transparent;">
-    <video src="/video/sigma.mp4" autoplay loop muted playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;object-position:center 58%;transform:scale(2.25);transform-origin:center center;filter:contrast(1.18) saturate(1.15) brightness(0.98);" aria-label="Simulation sigma"></video>
+  <div style="flex:1 1 240px;min-width:220px;overflow:hidden;border-radius:10px;background:transparent;">
+    <video src="/video/sigma.mp4" autoplay loop muted playsinline preload="metadata" style="width:400%;height:auto;max-width:none;display:block;margin-left:-150%;filter:contrast(1.18) saturate(1.15) brightness(0.98);" aria-label="Simulation sigma"></video>
   </div>
 </div>
 
