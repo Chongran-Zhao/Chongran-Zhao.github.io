@@ -15,7 +15,7 @@ f:I[9665,[],"ViewportBoundary"]
 13:I[4911,[],"AsyncMetadata"]
 15:I[4059,["17","static/chunks/17-9c04c9413a9f9f1f.js","178","static/chunks/178-595a94b9af1e67b5.js","748","static/chunks/748-b0753eeaf12cb586.js","182","static/chunks/app/%5Bslug%5D/page-a8197ffba13b391d.js"],"default"]
 9:["$","$12",null,{"fallback":null,"children":["$","$L13",null,{"promise":"$@14"}]}]
-16:Tb38,## 1. Model Calibration - Hyperelasticity
+16:T1141,## 1. Model Calibration - Hyperelasticity
 
 We adopted hyperelastic models of Hill's class with quadratic forms, compared with the classical eight-chain model and Ogden model; see more details in [2](https://doi.org/10.1016/j.jmps.2025.106346).
 
@@ -24,6 +24,12 @@ We adopted hyperelastic models of Hill's class with quadratic forms, compared wi
 ![Ogden model](/figures/Treloar_Ogden.jpg)
 
 Calibration against Treloar's experimental data for rubber. From left to right: the classical eight-chain model, Hill's class model with quadratic energy and Curnier-Rakotomanana strain, and the Ogden model.
+
+### GUI Calibration Application
+
+I also developed a GUI-based calibration application for hyperelastic models. The web version is available at [Calibration Shell](https://calibration.chongran-zhao.site/), and the source code is maintained in the [Calibration-Hyperelasticity](https://github.com/Chongran-Zhao/Calibration-Hyperelasticity) repository. The app supports built-in and user-provided datasets, lets you configure material models and parameters, runs the calibration, and then performs prediction on selected datasets.
+
+![Calibration Shell interface preview](/figures/calibration-shell.png)
 
 ## 2. Model Calibration - Viscoelasticity
 
