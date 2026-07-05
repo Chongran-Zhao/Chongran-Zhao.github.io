@@ -465,7 +465,7 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 32% center;
+  object-position: center;
 }
 
 .profile-identity {
