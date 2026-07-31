@@ -532,6 +532,31 @@ main {
   }
 }
 
+@media (max-width: 639.98px) {
+  .home-container {
+    padding-top: 1.5rem;
+  }
+
+  .home-grid {
+    gap: 2rem;
+  }
+
+  .profile-photo {
+    width: 14rem;
+    height: 14rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .profile-identity,
+  .profile-links {
+    margin-bottom: 1rem;
+  }
+
+  #current-time {
+    display: none;
+  }
+}
+
 /* Hover tooltip that reveals the email address */
 .email-tooltip-wrap {
   position: relative;
