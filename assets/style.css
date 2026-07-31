@@ -950,6 +950,7 @@ mjx-container[display="true"] {
 
 .gui-preview img {
   width: 100%;
+  height: auto;
   background: #fff;
 }
 
