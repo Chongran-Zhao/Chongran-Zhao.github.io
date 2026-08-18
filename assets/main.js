@@ -44,9 +44,10 @@
   var clock = document.getElementById('current-time');
   if (clock) {
     var tz = 'America/New_York';
+    var locationLabel = 'Providence, RI';
     var updateClock = function () {
       var time = new Date().toLocaleString('en-US', { hour12: false, timeZone: tz });
-      clock.textContent = 'Current time: ' + time + ' (' + tz + ')';
+      clock.textContent = 'Current time: ' + time + ' (' + locationLabel + ')';
     };
     updateClock();
     setInterval(updateClock, 1000);
