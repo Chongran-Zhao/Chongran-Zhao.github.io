@@ -43,7 +43,7 @@
    * ------------------------------------------------------------------ */
   var clock = document.getElementById('current-time');
   if (clock) {
-    var tz = 'Asia/Shanghai';
+    var tz = 'America/New_York';
     var updateClock = function () {
       var time = new Date().toLocaleString('en-US', { hour12: false, timeZone: tz });
       clock.textContent = 'Current time: ' + time + ' (' + tz + ')';
