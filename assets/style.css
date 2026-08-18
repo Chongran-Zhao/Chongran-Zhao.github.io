@@ -490,12 +490,32 @@ main {
 
 .profile-affiliation {
   color: var(--text-meta);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.profile-location {
+  font-size: 0.95rem;
+  color: var(--text-meta);
+  margin-bottom: 0.35rem;
 }
 
 .profile-note {
   font-size: 0.875rem;
   color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.profile-note a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.profile-note a:hover {
+  color: var(--accent);
+}
+
+#current-time {
+  white-space: nowrap;
 }
 
 .profile-links {
