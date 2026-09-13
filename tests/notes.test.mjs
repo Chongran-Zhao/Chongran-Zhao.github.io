@@ -22,15 +22,24 @@ test("metadata validation rejects mistakes before publishing", () => {
 test("production and preview builds isolate drafts, preserve URLs and render rich Markdown", () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "website-notes-test-"));
   try {
-    for (const name of ["package.json", "eleventy.config.js", "lib", "_includes", "notes", "search.njk", "index.html", ".nojekyll"])
+    for (const name of ["package.json", "eleventy.config.js", "lib", "_includes", "search.njk", "index.html", ".nojekyll"])
       fs.cpSync(path.join(root, name), path.join(dir, name), { recursive: true });
+    // Only copy Notes infrastructure; article fixtures must not depend on real content.
+    fs.mkdirSync(path.join(dir, "notes"));
+    for (const name of ["index.njk", "notes.11tydata.js"])
+      fs.copyFileSync(path.join(root, "notes", name), path.join(dir, "notes", name));
     fs.symlinkSync(path.join(root, "node_modules"), path.join(dir, "node_modules"), "dir");
     const folder = path.join(dir, "notes", "test-published");
     fs.mkdirSync(folder);
     const source = '---\ntitle: "Test <title>"\ndate: "2026-09-13"\ntags: [Mechanics]\ndraft: false\n---\n\n## Heading\n\nFulltextneedle $x^2$.\n\n$$\n\\det F = 1\n$$\n\n```python\nprint("hello")\n```\n\n![Example](figure.jpg)\n';
     const file = path.join(folder, "index.md");
     fs.writeFileSync(file, source);
-    fs.copyFileSync(path.join(root, "notes/writing-example/figure.jpg"), path.join(folder, "figure.jpg"));
+    const attachment = Buffer.from("fixture attachment");
+    fs.writeFileSync(path.join(folder, "figure.jpg"), attachment);
+    const draftFolder = path.join(dir, "notes", "writing-example");
+    fs.mkdirSync(draftFolder);
+    fs.writeFileSync(path.join(draftFolder, "index.md"), source.replace("draft: false", "draft: true"));
+    fs.writeFileSync(path.join(draftFolder, "figure.jpg"), attachment);
     const build = preview => execFileSync(process.execPath, [path.join(root, "node_modules/@11ty/eleventy/cmd.cjs")], {
       cwd: dir, env: { ...process.env, NOTES_PREVIEW: preview ? "1" : "0" }, stdio: "pipe"
     });
@@ -44,6 +53,7 @@ test("production and preview builds isolate drafts, preserve URLs and render ric
     assert.equal($('.note-outline a[href="#heading"]').length, 1);
     assert.equal($('.site-header a[href="/notes/"].active').length, 2);
     assert.ok(fs.existsSync(output("notes/test-published/figure.jpg")));
+    assert.deepEqual(fs.readFileSync(output("notes/test-published/figure.jpg")), attachment);
     assert.ok(!fs.existsSync(output("notes/test-published/index.md")));
     const search = JSON.parse(fs.readFileSync(output("notes/search.json"), "utf8"));
     assert.equal(search.length, 1);
