@@ -1,0 +1,29 @@
+---
+layout: base.njk
+isArticle: true
+---
+<a class="note-back" href="/notes/">← Notes</a>
+<div class="note-layout">
+  <article class="note-article">
+    <header class="note-heading">
+      {% if draft %}<p class="note-draft">Draft · local preview</p>{% endif %}
+      <h1>{{ title }}</h1>
+      <div class="note-meta"><time datetime="{{ date | dateISO }}">{{ date | dateLabel }}</time>
+        {% if updated %}<span>Updated {{ updated | dateLabel }}</span>{% endif %}
+        <span>{{ content | readingTime }} min read</span>
+      </div>
+      {% if tags.length %}<ul class="note-tags">{% for tag in tags %}<li><a href="/notes/?tag={{ tag | urlencode }}">{{ tag }}</a></li>{% endfor %}</ul>{% endif %}
+      {% if description %}<p class="note-description">{{ description }}</p>{% endif %}
+    </header>
+    <div class="note-prose">{{ content | safe }}</div>
+    <footer class="note-end"><a href="/notes/">← All notes</a><a href="#notes-main">Back to top ↑</a></footer>
+  </article>
+  {% set outline = content | toc %}
+  {% if outline.length %}
+  <aside class="note-outline"><details open><summary>{{ '目录' if language == 'zh-CN' else 'On this page' }}</summary>
+    <nav aria-label="Table of contents"><ol>{% for heading in outline %}
+      <li class="toc-{{ heading.level }}"><a href="#{{ heading.id }}">{{ heading.title }}</a></li>
+    {% endfor %}</ol></nav>
+  </details></aside>
+  {% endif %}
+</div>

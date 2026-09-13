@@ -201,13 +201,13 @@ button {
 .nav-links {
   display: none;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .nav-menu {
   display: flex;
   align-items: baseline;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .nav-link {

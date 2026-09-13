@@ -1,0 +1,24 @@
+{
+  "name": "chongran-academic-website",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "new:note": "node scripts/new-note.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.6",
+    "cheerio": "1.2.0",
+    "gray-matter": "4.0.3",
+    "highlight.js": "11.12.0",
+    "katex": "0.18.7",
+    "markdown-it": "15.0.2",
+    "markdown-it-anchor": "10.0.0",
+    "markdown-it-texmath": "1.0.0"
+  }
+}

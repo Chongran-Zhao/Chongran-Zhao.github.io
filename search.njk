@@ -1,0 +1,5 @@
+---
+permalink: /notes/search.json
+eleventyExcludeFromCollections: true
+---
+{{ collections.notes | searchIndex | dump | safe }}

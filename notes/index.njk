@@ -1,0 +1,29 @@
+---
+title: Notes
+description: Learning notes and reflections on mechanics, mathematics, computing, and research.
+layout: base.njk
+language: en
+---
+<header class="notes-heading"><h1>Notes</h1><p>Learning notes &amp; reflections.</p></header>
+{% if collections.notes.length %}
+<form class="notes-controls" role="search">
+  <div class="notes-search"><label for="notes-query">Search notes</label><input id="notes-query" type="search" placeholder="Search…" autocomplete="off"></div>
+  <div class="notes-filter"><label for="notes-tag">Topic</label><select id="notes-tag"><option value="">All topics</option>{% for tag in collections.noteTags %}<option value="{{ tag }}">{{ tag }}</option>{% endfor %}</select></div>
+</form>
+<p id="notes-count" class="notes-count" role="status">{{ collections.notes.length }} notes</p>
+<div class="notes-list">
+{% for note in collections.notes %}
+  <article class="notes-entry" data-note-url="{{ note.url }}" data-note-tags="{{ (note.data.tags or []) | dump }}">
+    <div class="notes-entry-meta"><time datetime="{{ note.date | dateISO }}">{{ note.date | dateLabel }}</time>{% if note.data.draft %}<span class="note-draft">Draft</span>{% endif %}</div>
+    <div><h2><a href="{{ note.url }}">{{ note.data.title }}</a></h2>
+      <p>{{ note.data.description or (note.templateContent | excerpt) }}</p>
+      <ul class="note-tags">{% for tag in note.data.tags %}<li><a href="?tag={{ tag | urlencode }}">{{ tag }}</a></li>{% endfor %}</ul>
+    </div>
+  </article>
+{% endfor %}
+</div>
+<p id="notes-no-results" class="notes-empty" hidden>No matching notes.</p>
+<noscript><p>Search requires JavaScript. All notes are listed above.</p></noscript>
+{% else %}
+<p class="notes-empty">No notes published yet.</p>
+{% endif %}

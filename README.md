@@ -1,8 +1,26 @@
 # Chongran Zhao — Personal Academic Website
 
 Static site served by GitHub Pages at <https://chongran-zhao.github.io>.
-No build step: the HTML/CSS/JS in this repository is the source and is
-deployed as-is.
+Existing pages use plain HTML/CSS/JS. Eleventy generates Markdown notes,
+and GitHub Actions builds and deploys `_site/` to GitHub Pages.
+
+## Writing notes
+
+See [笔记维护指南](docs/WRITING.md) for the complete Markdown workflow.
+
+```sh
+npm ci
+npm run new:note -- my-note "Note title"
+npm run dev
+```
+
+Edit `notes/my-note/index.md` in Typora or Obsidian. Local preview includes
+drafts; set `draft: false`, commit and push to publish. Each note owns its
+attachments and keeps a stable URL based on its folder name.
+
+Run `npm test` for validation tests and `npm run build` for a production
+build. Node.js 22 or newer is required. Generated files and dependencies
+are not committed. Committed draft sources are visible in this public repo.
 
 ## Structure
 
@@ -16,6 +34,12 @@ assets/style.css          All styling (design tokens at the top, then per-sectio
 assets/main.js            Theme toggle, mobile menu, home-page clock, BibTeX copy
 figures/, video/          Images and simulation videos
 resume.pdf                CV linked from the navigation bar
+notes/                    Markdown notes and article attachments
+_includes/                Shared Notes layouts
+assets/notes.css, notes.js Notes typography, search and filtering
+templates/note.md          Blank note template
+docs/WRITING.md            Chinese writing and publishing guide
+.github/workflows/pages.yml Build, test and deploy
 ```
 
 ## Updating content
@@ -36,6 +60,6 @@ resume.pdf                CV linked from the navigation bar
   `assets/style.css` (light mode in `:root`, dark mode in `.dark`).
 - **Footer date**: update the "Last updated" line in each page's footer.
 
-Preview locally with `python3 -m http.server` from the repository root
-(the site uses absolute paths like `/assets/style.css`, so open it via the
-server, not as a `file://` page).
+Preview locally with `npm run dev` (the site uses absolute paths, so open
+the local server URL, not a `file://` page). Existing HTML pages are copied
+unchanged during the build.

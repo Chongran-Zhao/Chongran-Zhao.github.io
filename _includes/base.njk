@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="{{ language or 'en' }}" class="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ title }} | {{ site.name }}</title>
+  <meta name="description" content="{{ description or 'Learning notes and reflections by Chongran Zhao.' }}">
+  <meta name="author" content="{{ site.name }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description or 'Learning notes and reflections.' }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:type" content="{{ 'article' if isArticle else 'website' }}">
+  {% if isArticle %}<meta property="article:published_time" content="{{ date | dateISO }}">{% endif %}
+  {% if updated %}<meta property="article:modified_time" content="{{ updated | dateISO }}">{% endif %}
+  {% if draft %}<meta name="robots" content="noindex,nofollow">{% endif %}
+  <link rel="icon" href="/figures/logo.png?v=20260705">
+  <link rel="preconnect" href="https://google-fonts.jialeliu.com" crossorigin>
+  <link rel="stylesheet" href="https://google-fonts.jialeliu.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;display=swap">
+  <link rel="stylesheet" href="/assets/style.css?v=20260913-notes">
+  <link rel="stylesheet" href="/assets/notes.css?v=20260913">
+  {% if isArticle %}
+  <link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="/assets/vendor/texmath.css">
+  {% endif %}
+  <script>try { if(localStorage.getItem('theme')==='dark') document.documentElement.classList.add('dark'); } catch(e){}</script>
+  <script src="/assets/main.js?v=20260913" defer></script>
+  <script src="/assets/notes.js?v=20260913" defer></script>
+</head>
+<body>
+  <a class="notes-skip" href="#notes-main">Skip to content</a>
+  {{ navigation | safe }}
+  <main id="notes-main" class="notes-shell">{{ content | safe }}</main>
+  <footer class="site-footer"><div class="footer-inner"><p>&copy; {{ site.year }} {{ site.name }}</p><p><a href="/notes/">Notes</a></p></div></footer>
+</body>
+</html>
