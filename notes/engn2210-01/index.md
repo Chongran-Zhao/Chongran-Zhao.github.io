@@ -137,11 +137,11 @@ $$
 
 In other words, a norm provides a way to measure the **magnitude or size** of vectors in the space.
 
-## 2.4 Euclidean Space
+## Euclidean Space
 
 > **Definition 2.7:** An Euclidean vector space $\mathbb E$ is a finite dimensional real inner product space.
 
-Note that an $n$ dimensional Euclidean space is denoted by $\mathbb E^n$, and the norm of $\mathbb E^n$ is induced by the inner product.
+Note that an $n$ dimensional Euclidean space is denoted by $\mathbb E^n$, and the norm of $\mathbb E^n$ is induced by the inner product. <font color=red> The Euclidean inner product between two vectors $\bm a$ and $\bm b$ is denoted by $\bm a\cdot \bm b$.</font> 
 
 > **Definition 2.8:** An **affine point space** $\mathcal E$ can be viewed as a space of points associated with a vector space $\mathcal V$, but with no distinguished origin. Unlike vectors, two points cannot be added directly.
 
@@ -197,4 +197,6 @@ When representing a vector, we should not write only a column matrix without spe
 
 ---
 
-> Edited on Sept. 13, 2026, at River House. I was not surprised that the first course would begin with some mathematical preliminaries. However, I honestly did not realize that there were so many subtle details involved in vector spaces!
+> First edited on Sep. 13, 2026, at River House. I was not surprised that the first course would begin with some mathematical preliminaries. However, I honestly did not realize that there were so many subtle details involved in vector spaces!
+>
+> Last edited on Sep. 14, 2026.
