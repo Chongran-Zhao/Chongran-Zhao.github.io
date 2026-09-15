@@ -239,6 +239,7 @@ $$
 > **Definition 4.7: <span style="color:red;">Dyadic product</span>**
 
 The **dyadic product** (or tensor product) of two vectors $\bm a$ and $\bm b$ is the tensor $\bm a\otimes\bm b$ defined through its action on an arbitrary vector $\bm c$,
+
 $$
 (\bm a\otimes\bm b)\bm c
 =
