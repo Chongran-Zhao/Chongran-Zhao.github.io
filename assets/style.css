@@ -408,7 +408,8 @@ main {
   }
 
   .home-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: 18rem minmax(0, 1fr);
+    gap: 3.5rem;
   }
 
   .home-sidebar {
@@ -416,7 +417,7 @@ main {
   }
 
   .home-content {
-    grid-column: span 2;
+    grid-column: span 1;
   }
 }
 
@@ -695,15 +696,14 @@ main {
 
 /* "Selected Publications" header row with the View All link */
 .selected-pubs {
-  margin-top: 4rem;
-  padding-top: 1.5rem;
+  margin-top: 2.5rem;
 }
 
 .selected-pubs-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 .selected-pubs-header .section-title {
@@ -806,7 +806,7 @@ main {
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--primary);
-  line-height: 1.25;
+  line-height: 1.4;
   margin-bottom: 0.5rem;
 }
 
@@ -833,6 +833,7 @@ main {
 
 .pub-card .pub-history {
   font-size: 0.75rem;
+  line-height: 1.6;
   color: var(--text-soft);
   margin-bottom: 0.75rem;
 }
@@ -944,9 +945,10 @@ mjx-container[display="true"] {
 }
 
 .figure-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
-  flex-wrap: wrap;
+  align-items: start;
 }
 
 .figure-row + .figure-row {
@@ -954,7 +956,7 @@ mjx-container[display="true"] {
 }
 
 .figure-row img {
-  width: 32%;
+  width: 100%;
   height: auto;
   object-fit: cover;
 }
@@ -1027,6 +1029,22 @@ mjx-container[display="true"] {
   align-items: flex-start;
   gap: 0.75rem;
   margin-bottom: 0.5rem;
+}
+
+@media (max-width: 639.98px) {
+  .figure-row {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .pub-card,
+  .activity-card {
+    padding: 1.25rem;
+  }
 }
 
 .activity-header h3 {

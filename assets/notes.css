@@ -1,6 +1,7 @@
 .notes-skip { position: fixed; left: 1rem; top: -5rem; z-index: 100; background: var(--background); padding: .75rem; }
 .notes-skip:focus { top: .75rem; }
 .notes-shell { max-width: 72rem; padding: 8.5rem 2rem 5rem; margin: auto; min-height: 85vh; }
+.notes-index { max-width: 56rem; padding-top: 8rem; }
 .notes-heading { padding-bottom: 2rem; border-bottom: 1px solid var(--card-border); }
 .notes-heading h1, .note-heading h1 { font-family: var(--font-serif); color: var(--primary); font-weight: 600; letter-spacing: 0; overflow-wrap: anywhere; }
 .notes-heading h1 { font-size: 3rem; line-height: 1.2; }
