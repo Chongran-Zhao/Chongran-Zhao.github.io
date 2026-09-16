@@ -56,11 +56,33 @@
 .note-prose th, .note-prose td { padding: .6rem .9rem; border: 1px solid var(--card-border); text-align: left; }
 .note-prose th { background: var(--neutral-100); font-weight: 600; }
 .note-prose .katex-display, .note-prose eqn { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: .5rem 0; }
-.note-prose .hljs-keyword, .note-prose .hljs-selector-tag { color: #974047; }
-.note-prose .hljs-string, .note-prose .hljs-number { color: #187360; }
-.note-prose .hljs-comment { color: var(--text-soft); font-style: italic; }
-.dark .note-prose .hljs-keyword { color: #f0a6af; }
-.dark .note-prose .hljs-string, .dark .note-prose .hljs-number { color: #85cfb6; }
+/* Highlight.js emits types and function calls separately from keywords in C++. */
+.note-prose {
+  --syntax-keyword: #8736a5;
+  --syntax-type: #096b72;
+  --syntax-function: #1756a9;
+  --syntax-string: #23713b;
+  --syntax-number: #a34c0a;
+  --syntax-comment: #596779;
+  --syntax-meta: #974047;
+}
+.dark .note-prose {
+  --syntax-keyword: #d5a6ff;
+  --syntax-type: #70d5d1;
+  --syntax-function: #8bbdff;
+  --syntax-string: #9bd68b;
+  --syntax-number: #ffc184;
+  --syntax-comment: #a3b1c2;
+  --syntax-meta: #f0a6af;
+}
+.note-prose pre code { color: var(--text-body); tab-size: 4; }
+.note-prose .hljs-keyword, .note-prose .hljs-selector-tag { color: var(--syntax-keyword); }
+.note-prose .hljs-type, .note-prose .hljs-title.class_ { color: var(--syntax-type); }
+.note-prose .hljs-title, .note-prose .hljs-built_in { color: var(--syntax-function); }
+.note-prose .hljs-string, .note-prose .hljs-char.escape_ { color: var(--syntax-string); }
+.note-prose .hljs-number, .note-prose .hljs-literal { color: var(--syntax-number); }
+.note-prose .hljs-comment { color: var(--syntax-comment); font-style: italic; }
+.note-prose .hljs-meta { color: var(--syntax-meta); }
 .note-end { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--card-border); color: var(--text-meta); font-size: .85rem; }
 @media(max-width: 1023px) {
   .notes-shell { padding-top: 7rem; }
