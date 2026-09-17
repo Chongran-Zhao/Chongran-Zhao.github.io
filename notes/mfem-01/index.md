@@ -156,8 +156,8 @@ $$
 $$
 
 $$
-\texttt{fixed\_bdr}[a-1] = 1 \;\iff\; u = 0 \text{ on } \Gamma_a
-\qquad\Longrightarrow\qquad
+\texttt{fixed\_bdr}[a-1] = 1\iff u = 0 \text{ on } \Gamma_a
+\Longrightarrow
 \texttt{ess\_tdof\_list} = \{\, i : x_i \in \Gamma_1 \,\} = \{0\}
 $$
 
