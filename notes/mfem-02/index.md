@@ -45,7 +45,7 @@ $$
 \qquad
 \underbrace{\bm P\,\bm N = \bar{\bm T} \;\text{ on } \Gamma_N}_{\text{natural}}
 \;}
-\label{strong_form}
+\tag{1}
 $$
 
 - $\bm N$ the reference outward normal, $\bar{\bm T}$ the traction per reference area, and $\partial\Omega_0 = \Gamma_D \cup \Gamma_N$. For the beam, $\bar{\bm T} = \bm 0$.
@@ -97,7 +97,7 @@ disp = 0.0;
 **Interpolation on one element.** Node $\mathbf{a}$ sits at the reference position $\bm X^\mathbf{a}$ and carries three numbers $d^\mathbf{a}_k$, $k = 1,2,3$, its displacement in the three coordinate directions. Inside $\Omega^\mathbf{e}$, the displacement field and the test function are interpolated from these nodal values with the shape functions of the element, the scalar functions $N^\mathbf{a}(\bm X)$:
 
 $$
-\label{discrete_disp}
+\tag{2}
 u^h_k(\bm X) = \sum_{\mathbf{a}=1}^{n} N^\mathbf{a}(\bm X)\, d^\mathbf{a}_k,
 \qquad
 w^h_k(\bm X) = \sum_{\mathbf{a}=1}^{n} N^\mathbf{a}(\bm X)\, w^\mathbf{a}_k,
@@ -110,7 +110,7 @@ The superscript $h$ marks discrete fields. The left-hand sides are components of
 **Deformation gradient.** Since $F^h_{kJ} = \delta_{kJ} + \partial u^h_k / \partial X_J$ and the nodal values do not depend on $\bm X$, only the shape functions are differentiated:
 $$
 F^h_{kJ} = \delta_{kJ} + \sum_{\mathbf{a}=1}^{n} d^\mathbf{a}_k\, N^\mathbf{a}_{,J} .
-\label{def_grad}
+\tag{3}
 $$
 
 So the tensor $\bm F^h$, and through the material law also $\bm C^h$, $\bm S^h$ and $\bm P^h$, is known once the nodal displacements $d^\mathbf{a}_k$ and the shape function gradients $N^\mathbf{a}_{,J}$ are known.
@@ -265,10 +265,10 @@ nonlinear_form.AddDomainIntegrator(
 nonlinear_form.SetEssentialTrueDofs(ess_tdof_list);
 ```
 
-Take a test function $\bm w$ that vanishes where the displacement is prescribed, $\bm w = \bm 0$ on $\Gamma_D$. Multiply Eq. $\eqref{strong_form}$ by it and integrate over the body,
+Take a test function $\bm w$ that vanishes where the displacement is prescribed, $\bm w = \bm 0$ on $\Gamma_D$. Multiply Eq. (1) by it and integrate over the body,
 
 $$
-\label{diff_eq}
+\tag{4}
 \int_{\Omega_0} \bm w \cdot \operatorname{Div} \bm P \; dV = 0 .
 $$
 
@@ -282,7 +282,7 @@ $$
 
 We use lowercase indices such as $i,j,k,l$ to denote the basis components associated with the current configuration, and uppercase indices such as $I,J,K,L$ to denote those associated with the reference configuration. The first Piola–Kirchhoff stress $\bm P$ is a two-point tensor, with one index referring to the current configuration and the other to the reference configuration, so its components are written as $P_{kJ}$. The test function $w_k$ is defined over the reference configuration. Note that all these indices refer to three-dimensional space and therefore take values $1,2,3$.
 
-so the integral $\eqref{diff_eq}$ splits into a divergence and a term with $\operatorname{Grad}\bm w$,
+so the integral in Eq. (4) splits into a divergence and a term with $\operatorname{Grad}\bm w$,
 $$
 \int_{\Omega_0} \bm w \cdot \operatorname{Div} \bm P \; dV = \int_{\Omega_0} \operatorname{Div}\big(\bm P^{\mathrm{T}} \bm w\big) \; dV - \int_{\Omega_0} \bm P : \operatorname{Grad}\bm w \; dV = 0 .
 $$
@@ -302,10 +302,10 @@ $$
 \int_{\Omega_0} \bm P : \operatorname{Grad}\bm w \; dV
 = \int_{\Gamma_N} \bar{\bm T} \cdot \bm w \; dA
 \qquad \forall\, \bm w,\;\; \bm w = \bm 0 \text{ on } \Gamma_D.
-\label{weak_form}
+\tag{5}
 $$
 
-**From the body to one element.** The weak form, Eq. $\eqref{weak_form}$, is a single statement about the whole body: the balance of momentum, tested against every admissible $\bm w$. Its integrals, however, are additive over non-overlapping pieces. The elements cover $\Omega_0$, and their faces on $\Gamma_N$ cover $\Gamma_N$, so moving everything to one side, Eq. $\eqref{weak_form}$ becomes a sum of element contributions,
+**From the body to one element.** The weak form, Eq. (5), is a single statement about the whole body: the balance of momentum, tested against every admissible $\bm w$. Its integrals, however, are additive over non-overlapping pieces. The elements cover $\Omega_0$, and their faces on $\Gamma_N$ cover $\Gamma_N$, so moving everything to one side, Eq. (5) becomes a sum of element contributions,
 
 $$
 \sum_\mathbf{e} \left[\;
@@ -382,7 +382,7 @@ R^\mathbf{a}_k(\bm u^h)
 = \int_{\Omega^\mathbf{e}} \sum_{J} N^\mathbf{a}_{,J}\; P^h_{kJ}\big(\bm F^h(\bm u^h)\big) \; dV
 \;-\; \int_{\partial\Omega^\mathbf{e} \cap \Gamma_N} N^\mathbf{a}\, \bar T_k \; dA
 \;}
-\label{elem_residual}
+\tag{6}
 $$
 
 Collected over the nodes $\mathbf{a}$ and directions $k$ of the element, these components form the element residual vector. As in the code, the entries are numbered direction by direction, first the $x$-components of the $n$ nodes, then $y$, then $z$:
@@ -395,7 +395,7 @@ P = \mathbf{a} + (k-1)\,n,
 \mathsf R^\mathbf{e} \in \mathbb R^{3n} .
 $$
 
-**The code.** `AssembleElementVector` evaluates Eq. $\eqref{elem_residual}$ without the traction term:
+**The code.** `AssembleElementVector` evaluates Eq. (6) without the traction term:
 
 ```c++
 void AssembleElementVector(const mfem::FiniteElement &elem,
@@ -446,7 +446,7 @@ void AssembleElementVector(const mfem::FiniteElement &elem,
 | $n$ | `num_nodes` |
 | $d^\mathbf{a}_k$ | `disp(aa + k*num_nodes)`, $k$ counted from 0 |
 | $N^\mathbf{a}_{,J}$ | `dN_dX(aa, J)` |
-| $\bm F^h$, Eq. $\eqref{def_grad}$ | `get_deformation_gradient(disp, dN_dX)` |
+| $\bm F^h$, Eq. (3) | `get_deformation_gradient(disp, dN_dX)` |
 | $\bm P^h$ | `PK1` |
 | $\omega_q \det(\partial\bm X/\partial\bm\xi)$ | `dV` (step 8) |
 | $R^\mathbf{a}_k$ | `residual(aa + k*num_nodes)` |
@@ -469,7 +469,7 @@ nonlinear_form.Mult(disp_true, residual);
 
 ## 7. Element stiffness
 
-**From the field $\bm u^h$ to the nodal values $\mathsf d^\mathbf{e}$.** Eq. $\eqref{elem_residual}$ writes the residual in terms of the field $\bm u^h$, but a field cannot be the unknown of a program; the unknowns are the nodal values. On $\Omega^\mathbf{e}$ the two carry the same information: by Eq. $\eqref{discrete_disp}$ the field is fixed by the element's nodal displacements,
+**From the field $\bm u^h$ to the nodal values $\mathsf d^\mathbf{e}$.** Eq. (6) writes the residual in terms of the field $\bm u^h$, but a field cannot be the unknown of a program; the unknowns are the nodal values. On $\Omega^\mathbf{e}$ the two carry the same information: by Eq. (2) the field is fixed by the element's nodal displacements,
 $$
 u^h_k(\bm X) = \sum_{\mathbf{b}=1}^{n} N^\mathbf{b}(\bm X)\, d^\mathbf{b}_k ,
 $$
@@ -502,12 +502,12 @@ R^\mathbf{a}_k(\mathsf d^\mathbf{e} + \Delta\mathsf d^\mathbf{e})
 \boxed{\;
 K^{\mathbf{a}\mathbf{b}}_{kl} = \frac{\partial R^\mathbf{a}_k}{\partial d^\mathbf{b}_l}
 \;}
-\label{tangent_def}
+\tag{7}
 $$
 
 $K^{\mathbf{a}\mathbf{b}}_{kl}$ says how much the residual at node $\mathbf{a}$, direction $k$, changes when node $\mathbf{b}$ moves in direction $l$. The rest of this step computes it from this component definition.
 
-**Step 1: start from the definition.** Insert the element residual, Eq. $\eqref{elem_residual}$, into Eq. $\eqref{tangent_def}$. The shape functions and the element domain do not depend on $\mathsf d^\mathbf{e}$, and neither does the traction term (a dead load), so the derivative passes through the integral and acts only on $\bm P^h$:
+**Step 1: start from the definition.** Insert the element residual, Eq. (6), into Eq. (7). The shape functions and the element domain do not depend on $\mathsf d^\mathbf{e}$, and neither does the traction term (a dead load), so the derivative passes through the integral and acts only on $\bm P^h$:
 
 $$
 K^{\mathbf{a}\mathbf{b}}_{kl}
@@ -540,10 +540,10 @@ since $\partial E^h_{KL}/\partial d^\mathbf{b}_l = \tfrac12 ( N^\mathbf{b}_{,K} 
 $$
 \frac{\partial P^h_{kJ}}{\partial d^\mathbf{b}_l}
 = \sum_{L} \Big( \sum_{I,K} F^h_{kI}\, \mathbb C^h_{IJKL}\, F^h_{lK} + \delta_{kl}\, S^h_{JL} \Big)\, N^\mathbf{b}_{,L} .
-\label{dP_dd}
+\tag{8}
 $$
 
-**Step 4: back into $K^{\mathbf{a}\mathbf{b}}_{kl}$.** Substituting Eq. $\eqref{dP_dd}$ into Step 1 gives the element stiffness tensor:
+**Step 4: back into $K^{\mathbf{a}\mathbf{b}}_{kl}$.** Substituting Eq. (8) into Step 1 gives the element stiffness tensor:
 
 $$
 \boxed{\;
@@ -551,12 +551,12 @@ K^{\mathbf{a}\mathbf{b}}_{kl} = \int_{\Omega^\mathbf{e}} \sum_{J,L} N^\mathbf{a}
 \qquad
 \mathbb A^h_{kJlL} = \underbrace{\sum_{I,K} F^h_{kI}\; \mathbb C^h_{IJKL}\; F^h_{lK}}_{\text{material}} \;+\; \underbrace{\delta_{kl}\; S^h_{JL}}_{\text{geometric}}
 \;}
-\label{elem_tangent}
+\tag{9}
 $$
 
 The bracket is the first elasticity tensor $\mathbb A^h = \partial\bm P^h/\partial\bm F^h$ of step 4: **the residual needs $\bm P^h$, and the tangent needs $\mathbb A^h$**, with one shape function gradient on each side.
 
-**From $K^{\mathbf{a}\mathbf{b}}_{kl}$ to $\mathsf K^\mathbf{e}$.** The element stiffness matrix of Eq. $\eqref{tangent_def}$ stores these components. Each pair (node, direction) is one element unknown, and the unknowns are numbered direction by direction, as in MFEM: first the $x$-components of nodes $1, \dots, n$, then the $y$-components, then the $z$-components. The pair $(\mathbf{a}, k)$ is therefore unknown number $\mathbf{a} + (k-1)\,n$, and
+**From $K^{\mathbf{a}\mathbf{b}}_{kl}$ to $\mathsf K^\mathbf{e}$.** The element stiffness matrix of Eq. (7) stores these components. Each pair (node, direction) is one element unknown, and the unknowns are numbered direction by direction, as in MFEM: first the $x$-components of nodes $1, \dots, n$, then the $y$-components, then the $z$-components. The pair $(\mathbf{a}, k)$ is therefore unknown number $\mathbf{a} + (k-1)\,n$, and
 $$
 \big(\mathsf K^\mathbf{e}\big)_{PQ} = K^{\mathbf{a}\mathbf{b}}_{kl},
 \qquad
@@ -580,7 +580,7 @@ $$
 \big(\mathsf K_{kl}\big)_{\mathbf{a}\mathbf{b}} = K^{\mathbf{a}\mathbf{b}}_{kl} .
 $$
 
-**The code.** `AssembleElementGrad` evaluates Eq. $\eqref{elem_tangent}$ at the same quadrature points as the residual:
+**The code.** `AssembleElementGrad` evaluates Eq. (9) at the same quadrature points as the residual:
 
 ```c++
 void AssembleElementGrad(const mfem::FiniteElement &elem,
@@ -628,7 +628,7 @@ void AssembleElementGrad(const mfem::FiniteElement &elem,
 | $N^\mathbf{a}_{,J}$, $N^\mathbf{b}_{,L}$ | `dNa_dX(J)`, `dNb_dX(L)` |
 | $(\mathsf K^\mathbf{e})_{PQ}$ | `tangent(aa+kk*num_nodes, bb+ll*num_nodes)`, all indices counted from 0 |
 
-- **The loop is Eq. $\eqref{elem_tangent}$ written out**: two loops over the nodes, two over the directions, and the sums over $J$ and $L$ spelled out.
+- **The loop is Eq. (9) written out**: two loops over the nodes, two over the directions, and the sums over $J$ and $L$ spelled out.
 - **`AssembleElementGrad` is the second fixed name**, called by `NonlinearForm::GetGradient`. Both functions compute $\bm F^h$ with the same `get_deformation_gradient`.
 
 ## 8. Quadrature
