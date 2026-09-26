@@ -365,6 +365,7 @@ $$
 $J$ stays inside because it only connects $\bm P^h$ with $\operatorname{Grad} N^\mathbf{a}$; $k$ comes out because it belongs to $w^\mathbf{a}_k$.
 
 **Step 4: collect the coefficient of each $w^\mathbf{a}_k$.** Both terms carry the same $w^\mathbf{a}_k$:
+
 $$
 \sum_{\mathbf{a},k} w^\mathbf{a}_k \left[\;
 \int_{\Omega^\mathbf{e}} \sum_{J} N^\mathbf{a}_{,J}\, P^h_{kJ} \; dV
