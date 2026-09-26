@@ -4,7 +4,7 @@ date: '2026-09-26'
 description: Finite element implementation notes for a hyperelastostatic problem
 tags: [Programming, Research]
 language: en
-draft: true
+draft: false
 ---
 
 ## Overview
