@@ -4,7 +4,7 @@ date: '2026-11-16'
 description: Phase-field fracture of a composite tube, the helical crack with AT1 and AT2 under displacement loading
 tags: [Programming, Research]
 language: en
-draft: true
+draft: false
 ---
 
 I have never taken a course in fracture mechanics. That gap showed up as soon as I started phase-field simulations. The technique itself is not hard. The energy, the weak forms, the alternate minimization and the bounds on the phase field all follow from a few pages of a paper, and I could implement them without much trouble. What I lacked was insight. I did not know what result to expect, so I could not tell a physical crack from a numerical artifact. When my first runs gave a flat ring where the paper shows a helix, I had no way to judge which one was wrong.
